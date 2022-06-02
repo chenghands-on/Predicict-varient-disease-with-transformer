@@ -393,7 +393,7 @@ class MSATransformer(nn.Module):
         x = self.lm_head(x)
         # 我新做的调试
         layer_last=nn.Linear(self.alphabet_size,self.alphabet_size)
-        layer_last.apply(init_weights);
+        #layer_last.apply(init_weights);
         x=layer_last(x)
 
         result = {"logits": x, "representations": hidden_representations}
