@@ -396,6 +396,8 @@ class MSATransformer(nn.Module):
         layer_last.apply(init_weights);
         x=layer_last(x)
         print("牛达")
+        exit(-1)
+        print("syntax error")
 
         result = {"logits": x, "representations": hidden_representations}
         if need_head_weights:
