@@ -202,7 +202,9 @@ class ProteinBertModel(nn.Module):
     def num_layers(self):
         return self.args.layers
 
-
+def init_weights(m):
+            if type(m) == nn.Linear:
+                nn.init.xavier_uniform_(m.weight)
 class MSATransformer(nn.Module):
     @classmethod
     def add_args(cls, parser):
@@ -390,11 +392,7 @@ class MSATransformer(nn.Module):
             hidden_representations[layer_idx + 1] = x
         x = self.lm_head(x)
         # 我新做的调试
-        from torch import nn
         layer_last=nn.Linear(self.alphabet_size,self.alphabet_size)
-        def init_weights(m):
-            if type(m) == nn.Linear:
-                nn.init.xavier_uniform_(m.weight)
         layer_last.apply(init_weights);
         x=layer_last(x)
 
